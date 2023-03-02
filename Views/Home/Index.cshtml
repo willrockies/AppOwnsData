@@ -1,0 +1,15 @@
+﻿@using System.Security.Principal
+
+@if (User.Identity.IsAuthenticated) {
+  <div class="jumbotron">
+    <h2>Welcome @User.FindFirst("name").Value</h2>
+    @*<p>You have now logged into this application.</p>*@
+    <p>Você esta logado na aplicação</p>
+  </div>
+}
+else {
+  <div class="jumbotron">
+    <h2>Bem Vindo Power BI Embed reports</h2>
+    <p>Clique em <strong>sign in</strong> no link do topo a direita para ter acesso a relatorios em power bi</p>
+  </div>
+}
