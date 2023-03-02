@@ -6,24 +6,25 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AppOwnsData.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AppOwnsData.Controllers
 {
     public class DepartmentsController : Controller
     {
         private readonly AppOwnsDataContext _context;
-
+        
         public DepartmentsController(AppOwnsDataContext context)
         {
             _context = context;
         }
-
+        [AllowAnonymous]
         // GET: Departments
         public async Task<IActionResult> Index()
         {
               return View(await _context.Department.ToListAsync());
         }
-
+        [AllowAnonymous]
         // GET: Departments/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -41,13 +42,13 @@ namespace AppOwnsData.Controllers
 
             return View(department);
         }
-
+        [AllowAnonymous]
         // GET: Departments/Create
         public IActionResult Create()
         {
             return View();
         }
-
+        [AllowAnonymous]
         // POST: Departments/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -63,7 +64,7 @@ namespace AppOwnsData.Controllers
             }
             return View(department);
         }
-
+        [AllowAnonymous]
         // GET: Departments/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -79,7 +80,7 @@ namespace AppOwnsData.Controllers
             }
             return View(department);
         }
-
+        [AllowAnonymous]
         // POST: Departments/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -114,7 +115,7 @@ namespace AppOwnsData.Controllers
             }
             return View(department);
         }
-
+        [AllowAnonymous]
         // GET: Departments/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -134,6 +135,7 @@ namespace AppOwnsData.Controllers
         }
 
         // POST: Departments/Delete/5
+        [AllowAnonymous]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

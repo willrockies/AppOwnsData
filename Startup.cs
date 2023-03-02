@@ -38,7 +38,8 @@ namespace AppOwnsData {
               .AddMicrosoftIdentityUI();
 
     services.AddDbContext<AppOwnsDataContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("AppOwnsDataContext")));
+            options.UseSqlServer(Configuration.GetConnectionString("AppOwnsDataContext"), builder => 
+            builder.MigrationsAssembly("AppOwnsData")));
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
