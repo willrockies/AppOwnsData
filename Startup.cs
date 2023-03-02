@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
 using Microsoft.AspNetCore.Builder;
@@ -8,6 +8,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using AppOwnsData.Services;
+using Microsoft.EntityFrameworkCore;
+using AppOwnsData.Models;
 
 namespace AppOwnsData {
   public class Startup {
@@ -34,6 +36,9 @@ namespace AppOwnsData {
       });
       services.AddRazorPages()
               .AddMicrosoftIdentityUI();
+
+    services.AddDbContext<AppOwnsDataContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("AppOwnsDataContext")));
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
