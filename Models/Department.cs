@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 
 namespace AppOwnsData.Models
@@ -10,7 +12,7 @@ namespace AppOwnsData.Models
         public string Name { get; set; }
         public ICollection<Seller> Sellers { get; set; } = new List<Seller>();
 
-        public Department(){}
+        public Department() { }
 
         public Department(int id, string name)
         {

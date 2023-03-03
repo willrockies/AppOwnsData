@@ -9,6 +9,7 @@ using Microsoft.Extensions.Logging;
 using AppOwnsData.Models;
 using AppOwnsData.Services;
 using Microsoft.Rest;
+using AppOwnsData.Data;
 
 namespace AppOwnsData.Controllers
 {
@@ -22,6 +23,7 @@ namespace AppOwnsData.Controllers
         public HomeController(PowerBiServiceApi powerBiServiceApi)
         {
             this.powerBiServiceApi = powerBiServiceApi;
+            
         }
 
         [AllowAnonymous]
