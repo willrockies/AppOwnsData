@@ -11,6 +11,7 @@ using AppOwnsData.Services;
 using Microsoft.EntityFrameworkCore;
 using AppOwnsData.Models;
 using AppOwnsData.Data;
+using AppOwnsData.Services;
 
 namespace AppOwnsData
 {
@@ -48,6 +49,7 @@ namespace AppOwnsData
                     builder.MigrationsAssembly("AppOwnsData")));
 
             services.AddScoped<SeedingService>();
+            services.AddScoped<SellerService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, SeedingService seedingService)
