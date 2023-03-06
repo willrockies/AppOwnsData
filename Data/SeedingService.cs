@@ -20,6 +20,8 @@ namespace AppOwnsData.Data
             {
                 return; // DB has been seeded
             }
+
+            //para SQL server não tem a necessidade de implemetar o ID diferente do MYSQL
             #region
             Department d1 = new Department("Computers");
             Department d2 = new Department("Eletronics");
