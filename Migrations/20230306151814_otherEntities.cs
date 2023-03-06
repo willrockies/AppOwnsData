@@ -1,11 +1,12 @@
 ﻿using System;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace AppOwnsData.Migrations
 {
-    public partial class OtherEntities : Migration
+    public partial class otherEntities : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,19 +15,19 @@ namespace AppOwnsData.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     BirthDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     BaseSalary = table.Column<double>(type: "float", nullable: false),
-                    DeparmentId = table.Column<int>(type: "int", nullable: true)
+                    DepartmentId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Seller", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Seller_Department_DeparmentId",
-                        column: x => x.DeparmentId,
+                        name: "FK_Seller_Department_DepartmentId",
+                        column: x => x.DepartmentId,
                         principalTable: "Department",
                         principalColumn: "Id");
                 });
@@ -36,7 +37,7 @@ namespace AppOwnsData.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                       .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Amount = table.Column<double>(type: "float", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
@@ -58,9 +59,9 @@ namespace AppOwnsData.Migrations
                 column: "SellerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Seller_DeparmentId",
+                name: "IX_Seller_DepartmentId",
                 table: "Seller",
-                column: "DeparmentId");
+                column: "DepartmentId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

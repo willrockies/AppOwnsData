@@ -13,7 +13,7 @@ namespace AppOwnsData.Models
         public ICollection<Seller> Sellers { get; set; } = new List<Seller>();
 
         public Department() { }
-
+        public Department(string name) { Name = name; }
         public Department(int id, string name)
         {
             Id = id;

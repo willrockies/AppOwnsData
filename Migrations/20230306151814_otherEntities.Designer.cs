@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AppOwnsData.Migrations
 {
     [DbContext(typeof(AppOwnsDataContext))]
-    [Migration("20230302192025_OtherEntities")]
-    partial class OtherEntities
+    [Migration("20230306151814_otherEntities")]
+    partial class otherEntities
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -69,11 +69,11 @@ namespace AppOwnsData.Migrations
 
             modelBuilder.Entity("AppOwnsData.Models.Seller", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"), 1L, 1);
 
                     b.Property<double>("BaseSalary")
                         .HasColumnType("float");
@@ -81,7 +81,7 @@ namespace AppOwnsData.Migrations
                     b.Property<DateTime>("BirthDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("DeparmentId")
+                    b.Property<int?>("DepartmentId")
                         .HasColumnType("int");
 
                     b.Property<string>("Email")
@@ -92,7 +92,7 @@ namespace AppOwnsData.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DeparmentId");
+                    b.HasIndex("DepartmentId");
 
                     b.ToTable("Seller");
                 });
@@ -108,11 +108,11 @@ namespace AppOwnsData.Migrations
 
             modelBuilder.Entity("AppOwnsData.Models.Seller", b =>
                 {
-                    b.HasOne("AppOwnsData.Models.Department", "Deparment")
+                    b.HasOne("AppOwnsData.Models.Department", "Department")
                         .WithMany("Sellers")
-                        .HasForeignKey("DeparmentId");
+                        .HasForeignKey("DepartmentId");
 
-                    b.Navigation("Deparment");
+                    b.Navigation("Department");
                 });
 
             modelBuilder.Entity("AppOwnsData.Models.Department", b =>

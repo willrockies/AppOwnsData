@@ -8,6 +8,10 @@ namespace AppOwnsData.Models
 {
     public class AppOwnsDataContext : DbContext
     {
+        public AppOwnsDataContext()
+        {
+        }
+
         public AppOwnsDataContext (DbContextOptions<AppOwnsDataContext> options)
             : base(options)
         {
