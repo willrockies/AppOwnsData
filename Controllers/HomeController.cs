@@ -31,7 +31,7 @@ namespace AppOwnsData.Controllers
         {
             return View();
         }
-
+        [AllowAnonymous]
         public async Task<IActionResult> Embed(string workspaceId)
         {
 

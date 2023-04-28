@@ -2,64 +2,81 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @model IEnumerable<AppOwnsData.Models.Seller>
+<script>
+    var viewModel = @Html.Raw(Model);
+</script>
 @{
+
     ViewData["Title"] = "Vendedores";
 }
 
 <h2>@ViewData["Title"]</h2>
-<p>
-    <a asp-action="Create" class="btn btn-default">Adicionar novo Vendedor</a>
+
+<div id="workspaces-list" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+</div>
+<p style="margin-top:100px">
+    <a asp-action="Create" class="btn btn-primary">Adicionar</a>
+    <a class="btn btn-warning" asp-area="" asp-controller="Sellers" asp-action="Embed">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bar-chart-line-fill" viewBox="0 0 16 16">
+            <path d="M11 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h1V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7h1V2z"></path>
+        </svg>
+    </a>
+   @* <a id="get-report" class="btn btn-primary">
+        Relatorio
+
+    </a>*@
 </p>
+<div id="seller-table">
+    <table class="table table-striped table-hover">
 
-<table class="table table-striped table-hover">
-
-    <thead>
-        <tr>
-            <th class="success">
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th class="success">
-                @Html.DisplayNameFor(model => model.Email)
-            </th>
-            <th class="success">
-                @Html.DisplayNameFor(model => model.BirthDate)
-            </th>
-            <th class="success">
-                @Html.DisplayNameFor(model => model.BaseSalary)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-
-    <tbody>
-        @foreach (var item in Model)
-        {
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Email)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.BirthDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.BaseSalary)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">
-                        Editar
-                    </a>
-                    <a asp-action="Details" asp-route-id="@item.Id">
-                        Detalhes
-                    </a>
-                    <a asp-action="Delete" asp-route-id="@item.Id">
-                        Deletar
-                    </a>
-                </td>
+                <th class="success">
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th class="success">
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                <th class="success">
+                    @Html.DisplayNameFor(model => model.BirthDate)
+                </th>
+                <th class="success">
+                    @Html.DisplayNameFor(model => model.BaseSalary)
+                </th>
+                <th></th>
             </tr>
-        }
-    </tbody>
+        </thead>
 
-</table>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BirthDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BaseSalary)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">
+                            Editar
+                        </a>
+                        <a asp-action="Details" asp-route-id="@item.Id">
+                            Detalhes
+                        </a>
+                        <a asp-action="Delete" asp-route-id="@item.Id">
+                            Deletar
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+</div>

@@ -125,6 +125,7 @@ $(function () {
     var workspaceSelector = $("#workspace-selector");
     var workspacesList = $("#workspaces-list");
     var reportsList = $("#reports-list");
+    var reportGet = $("#get-report");
     var datasetsList = $("#datasets-list");
     var viewModel = window['viewModel'];
     console.log("cw", viewModel.currentWorkspace);
@@ -136,6 +137,11 @@ $(function () {
         workspacesList.append(link);
     });
     if (viewModel.reports.length == 0) {
+        reportGet.append($("<li>")
+            .text("no reports in workspace")
+            .addClass("no-content"));
+    }
+    if (viewModel.reports.length == 0) {
         reportsList.append($("<li>")
             .text("no reports in workspace")
             .addClass("no-content"));
@@ -146,8 +152,9 @@ $(function () {
             li.append($("<i>").addClass("fa fa-bar-chart"));
             li.append($("<a>", {
                 "href": "javascript:void(0);"
-            }).text(report.name).click(function () { embedReport(report); }));
+            }).text(report.name).click(function () { embedReport(report); console.log("report", report.name); }));
             reportsList.append(li);
+            console.log("report", report.name);
         });
     }
     if (viewModel.datasets.length == 0) {
@@ -173,6 +180,34 @@ $(function () {
         embedReport(newReport, true);
     }
 });
+var embedOneReport = function (report, editMode) {
+    if (editMode === void 0) { editMode = false; }
+    $("#seller-table").hide();
+    var viewModel = window['viewModel'];
+    var token = viewModel.token;
+    var models = pbimodels;
+    var config = {
+        type: 'report',
+        id: report.id,
+        embedUrl: report.embedUrl,
+        accessToken: token,
+        tokenType: models.TokenType.Embed,
+        permissions: models.Permissions.All,
+        viewMode: editMode ? models.ViewMode.Edit : models.ViewMode.View,
+        settings: {
+            panes: {
+                filters: { visible: false },
+                pageNavigation: { visible: true }
+            }
+        }
+    };
+    // Get a reference to the embedded report HTML element
+    var reportContainer = document.getElementById('embed-container');
+    var powerbi = window.powerbi;
+    // Embed the report and display it within the div container.
+    powerbi.reset(reportContainer);
+    var embeddedReport = powerbi.embed(reportContainer, config);
+};
 var embedReport = function (report, editMode) {
     if (editMode === void 0) { editMode = false; }
     $("#embedding-instructions").hide();

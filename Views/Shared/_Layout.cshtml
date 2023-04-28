@@ -4,14 +4,75 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>App-Owns-Data Demo</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3" style="background-color: #e3f2fd;">
+        <nav>
+            <div class="logo">
+                <i class="bx bx-menu menu-icon"></i>
+                <span class="logo-name"><img src="~/img/arbit_logo.png" width="50px" heigth="50px" /></span>
+            </div>
+            <div class="sidebar">
+                <div class="logo">
+                    <i class="bx bx-menu menu-icon"></i>
+                    <span class="logo-name">
+                     <img src="~/img/arbit_logo.png" width="50px" heigth="50px" />
+                     </span>
+                </div>
+
+                <div class="sidebar-content">
+                    <ul class="lists">
+                        <li class="list">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">
+                           @* <a href="#" class="nav-link">*@
+                                <i class="bx bx-home-alt icon"></i>
+                            <span class="link">Home</span>
+                            </a>
+                        </li>
+                        <li class="list">
+                            <a class="nav-link text-dark dropdown-btn">
+                                <i class="bx bx-down-arrow-alt"></i>
+                                <span class="link">Dropdown</span>
+                                
+                            </a>
+                            <div class="dropdown-container">
+                                <a class="nav-link text-dark" href="#">Link 1</a>
+                                <a class="nav-link text-dark" href="#">Link 2</a>
+                                <a class="nav-link text-dark" href="#">Link 3</a>
+                            </div>
+                        </li>
+                        <li class="list">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Embed">
+                                <i class="bx bx-bar-chart-alt-2 icon"></i>
+                                <span class="link">Relatorios Embed</span>
+                            </a>
+                        </li>
+                        <li class="list">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Departments" asp-action="Index">
+                                <i class="bx bx-bell icon"></i>
+                                <span class="link">Departamento</span>
+                            </a>
+                        </li>
+                        <li class="list">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Sellers" asp-action="Index">
+                                <i class="bx bx-body icon"></i>
+                                <span class="link">Vendedor</span>
+                            </a>
+                        </li>
+                     
+                    </ul>
+                </div>
+            </div>
+        @*</nav>*@
+        <!-- Sidebar -->
+            <div class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3">
+        @*<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3">*@
             <div class="container">
-              <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Power BI Embed Arbit</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Power BI Embed Arbit</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -34,15 +95,22 @@
                     </ul>
                 </div>
             </div>
+            </div>
         </nav>
     </header>
-    <div class="container">
+
+
+    <div class="container" style="margin-top:100px">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
+
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="~/js/sidebars.js"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>

@@ -4,8 +4,11 @@ using AppOwnsData.Services;
 using AppOwnsData.Services.Exceptions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Rest;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace AppOwnsData.Controllers
 {
@@ -14,11 +17,13 @@ namespace AppOwnsData.Controllers
 
         private readonly SellerService _sellerService;
         private readonly DepartmentService _departmentService;
+        private readonly PowerBiServiceApi _powerBiServiceApi;
 
-        public SellersController(SellerService sellerService, DepartmentService departmentService)
+        public SellersController(SellerService sellerService, DepartmentService departmentService, PowerBiServiceApi powerBiServiceApi)
         {
             _sellerService = sellerService;
             _departmentService = departmentService;
+            _powerBiServiceApi = powerBiServiceApi;
         }
 
         [AllowAnonymous]
@@ -151,6 +156,24 @@ namespace AppOwnsData.Controllers
 
             return View(viewModel);
         }
+        [AllowAnonymous]
+        public async Task<IActionResult> Embed()
+        {
 
+
+            Guid workspaceId = new Guid("074ed360-d99c-4ff0-961a-9471d6fad229");
+            Guid reportId = new Guid("86957652-2a88-4657-9029-11624caa9521");
+
+            var viewModel = await _powerBiServiceApi.GetReport(workspaceId, reportId);
+
+            return View(viewModel);
+        }
+
+        [AllowAnonymous]
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
     }
 }
